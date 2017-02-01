@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import os
+import re
 import sys
 import xbmc
 import struct
@@ -176,6 +177,8 @@ def addfilehash(name,hash,seek):
     return hash
 
 def normalizeString(str):
+  p = re.compile(r'\[.*?\]')
+  str = p.sub('',str)
   return unicodedata.normalize(
          'NFKD', unicode(unicode(str, 'utf-8'))
          ).encode('ascii','ignore')
